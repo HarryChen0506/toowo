@@ -1,0 +1,70 @@
+<!--pages/demo/demo.wxml-->
+<view class="demo">
+  <block>
+    <text>这是个测试页面</text>
+  </block>
+  <view style="height: 280px;background: red;">
+    <block>
+      <text>地图案例</text>
+    </block>
+    <map 
+      id="map" 
+      longitude="{{location.longitude}}" 
+      latitude="{{location.latitude}}"
+      markers="{{markers}}"
+    >
+    </map> 
+  
+  </view>  
+  <view>
+    <block>
+      <text>scroll-view案例</text>
+    </block>
+    <scroll-view 
+      scroll-x 
+      class="scroll-view"
+    >
+        <view id="green" class="scroll-view-item bc_green"></view>
+        <view id="red"  class="scroll-view-item bc_red"></view>
+        <view id="yellow" class="scroll-view-item bc_yellow"></view>
+        <view id="blue" class="scroll-view-item bc_blue"></view>
+    </scroll-view> 
+  </view> 
+  <view>
+    <block>
+      <text>swiper</text>
+    </block>
+    <swiper 
+      indicator-dots="{{indicatorDots}}"
+      autoplay="{{autoplay}}" 
+      interval="{{interval}}" 
+      duration="{{duration}}">
+      <block 
+        wx:for="{{imgUrls}}" 
+        wx:key="*this"
+      >
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" width="355" height="150"/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view>
+    <block>
+      <text>movable-view</text>
+    </block> 
+    <movable-area 
+      style="height: 200px; width: 200px; background: red;"
+    >
+      <movable-view 
+        style="height: 50px; width: 50px; background: blue;" 
+        x="{{x}}" 
+        y="{{y}}" 
+        direction="all"
+      >
+      </movable-view>
+    </movable-area>
+  </view>
+
+  
+</view>
