@@ -1,8 +1,10 @@
 {
   "pages": [
+    "pages/tetris/tetris",
     "pages/index/index",
     "pages/logs/logs",
     "pages/demo/demo"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

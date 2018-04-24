@@ -1,0 +1,103 @@
+/* pages/tetris/tetris.wxss */
+page{
+  height: 100%
+}
+.tetris {
+  height: 100%;
+  width:100%;
+  background: #fff;
+}
+.main {
+  position: relative;
+  padding: 20rpx 40rpx;
+}
+.main-left {
+  width: 100%;
+}
+.main-right {
+  position: absolute;
+  right: 100rpx;
+  top: 50rpx;
+}
+.main .game {
+    margin: 0 auto;
+    width: 200rpx;
+    height: 400rpx;
+    border: 1rpx solid #000;
+}
+.main .next {
+  width: 80rpx;
+  height: 80rpx;
+  border: 1rpx solid red;
+}
+.main .score {
+  margin-top: 20rpx
+}
+.operate {
+  margin-top: 100rpx;
+  padding: 20rpx 40rpx;
+  display: flex;
+}
+.operate .control {
+  width: 60%;
+}
+.operate .direction {
+  position: relative;
+  width: 300rpx;
+  height: 300rpx;
+  /* background: blue; */
+}
+.dir-button {  
+  position: absolute;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100rpx;
+  background: red;
+  text-align: center;
+}
+.dir-button.up {
+  top: 0rpx;
+  left: 100rpx;
+   transform: rotate(-90deg);
+}
+.dir-button.right {
+   top: 100rpx;
+   left: 200rpx;
+   transform: rotate(0deg);
+}
+.dir-button.down {
+  top: 200rpx;
+  left: 100rpx;
+   transform: rotate(90deg);
+}
+.dir-button.left {
+   top: 100rpx;
+   left: 0rpx;
+   transform: rotate(180deg);
+}
+.dir-icon {  
+  line-height: 100rpx;
+  font-size: 50rpx;
+  color: #fff;
+}
+.control-button {
+  width: 300rpx;
+  height: 100rpx;
+  text-align: center;
+}
+.control-button.fall {
+  margin-top: 100rpx;
+  text-align: center;
+  border-radius: 100rpx;
+  background: blue;
+  color: #fff;
+}
+.control-button.set {
+  width: 100rpx;
+  height: 100rpx;
+  background: yellow;
+  border-radius: 100rpx;
+  color: #333;
+  font-size: 40rpx; 
+  line-height: 100rpx;
+}
