@@ -2,10 +2,26 @@
 <view class="tetris">  
   <view class="main">
     <view class="main-left">
-      <view class="game"></view>
+      <view class="game">
+        <view wx:for="{{gameData}}"  wx:for-item="row" wx:key="*this" wx:for-index="idx_row" class="box-row">
+          <view wx:for="{{row}}" wx:for-item="dot" wx:for-index="idx_col" wx:key="*this" class="box-col"> 
+            <view wx:if="{{dot===2}}" class=".box .box-next"></view>                   
+            <view wx:if="{{dot===1}}" class=".box .box-dead"></view>                   
+            <view wx:if="{{dot===0}}" class=".box "></view>                   
+          </view>
+        </view>
+      </view>
     </view>
     <view class="main-right">
-      <view class="next"></view>
+      <view class="next">
+        <view wx:for="{{nextData}}"  wx:for-item="row" wx:key="*this" wx:for-index="idx_row" class="box-row">
+          <view wx:for="{{row}}" wx:for-item="dot" wx:for-index="idx_col" wx:key="*this" class="box-col"> 
+            <view wx:if="{{dot===2}}" class=".box .box-next"></view>                   
+            <view wx:if="{{dot===1}}" class=".box .box-dead"></view>                   
+            <view wx:if="{{dot===0}}" class=".box "></view>                   
+          </view>
+        </view>
+      </view>
       <view class="score">
         <text>得分</text>
         <view>35</view>
@@ -22,10 +38,10 @@
       </view>
     </view>
     <view class="direction">
-      <view class="dir-button up"><text class="dir-icon up">></text></view>
-      <view class="dir-button right"><text class="dir-icon right">></text></view>
-      <view class="dir-button down"><text class="dir-icon down">></text></view>
-      <view class="dir-button left"><text class="dir-icon left">></text></view>
+      <view class="dir-button up" bindtap="toRotate"><text class="dir-icon up">></text></view>
+      <view class="dir-button right" bindtap="toRight"><text class="dir-icon right">></text></view>
+      <view class="dir-button down" bindtap="toDown"><text class="dir-icon down">></text></view>
+      <view class="dir-button left" bindtap="toLeft"><text class="dir-icon left">></text></view>
     </view>
   </view>
 </view> 

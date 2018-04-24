@@ -12,22 +12,42 @@ page{
   padding: 20rpx 40rpx;
 }
 .main-left {
-  width: 100%;
+ display: flex;
 }
 .main-right {
   position: absolute;
-  right: 100rpx;
+  right: 50rpx;
   top: 50rpx;
 }
 .main .game {
     margin: 0 auto;
-    width: 200rpx;
-    height: 400rpx;
+    /* width: 290rpx;  */
+    /* min-height: 600rpx;  */
     border: 1rpx solid #000;
 }
+.box-row {  
+   font-size: 0rpx; 
+}
+.box-col {
+  display: inline-block;
+}
+.box {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 30rpx;
+  height: 30rpx;
+}
+.box.box-next {
+    border: 1px solid #fdfdfd;
+    background: pink;
+}
+.box.box-dead {
+    border: 1px solid #ddd;
+    background: #ccc;
+}
 .main .next {
-  width: 80rpx;
-  height: 80rpx;
+  width: 120rpx;
+  height: 120rpx;
   border: 1rpx solid red;
 }
 .main .score {
