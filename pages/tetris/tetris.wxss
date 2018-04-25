@@ -113,6 +113,7 @@ page{
   color: #fff;
 }
 .control-button.set {
+  display: inline-block;
   width: 100rpx;
   height: 100rpx;
   background: yellow;
@@ -120,4 +121,7 @@ page{
   color: #333;
   font-size: 40rpx; 
   line-height: 100rpx;
+}
+.control-button.set.reset {
+  margin-left: 50rpx;
 }

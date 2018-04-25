@@ -24,14 +24,15 @@
       </view>
       <view class="score">
         <text>得分</text>
-        <view>35</view>
+        <view>{{score}}</view>
       </view>
     </view>
   </view>
   <view class="operate">
     <view class="control">
       <view class="control-up">
-        <view class="control-button set"><text>暂停</text></view>
+        <view class="control-button set pause" bindtap="play"><text>暂停</text></view>
+        <view class="control-button set reset" bindtap="reset"><text>重玩</text></view>
       </view>
       <view class="control-down">
         <view class="control-button fall" bindtap="toFall"><text class="dir-icon fall">fall</text></view>

@@ -19,12 +19,12 @@ let gameData = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
-  [1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 let nextData = [
-  [2, 2, 0, 0],
-  [0, 2, 2, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
   [0, 0, 0, 0],
   [0, 0, 0, 0],
 ];
@@ -46,7 +46,10 @@ function decorateData(data) {
 Page({
   data: {
     gameData: decorateData(gameData),
-    nextData: decorateData(nextData)
+    nextData: decorateData(nextData),
+    status: 'pause',   //默认暂停
+    timerId: null,     //定时器Id
+    score: 0,          //得分
   },
 
   /**
@@ -59,7 +62,8 @@ Page({
       refreshGame: this.refreshGame,
       
     });
-    this.game.init()
+    this.game.init();
+    this.play();
   },
 
   /**
@@ -73,14 +77,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.run()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    this.pause();
   },
 
   /**
@@ -127,7 +131,108 @@ Page({
     var newData = decorateData(data);
     this.setData({ gameData: newData })
   },
-  // 将数据进行一层对象的包裹
+  /**
+   * 控制系统
+   */
+  //计算分数 
+  calScore: function(level){    
+    let getScore = 0;   
+    switch(level) {
+      case 1:
+        getScore = 10;
+        break;
+      case 2:
+        getScore = 30;
+        break;
+      case 3:
+        getScore = 60;
+        break;
+      case 4:
+        getScore = 80;
+        break;
+      default:
+        break
+    }
+    return getScore
+  },
+  autoMove: function () {
+    if (!this.game.down()) {
+      // 如果不能继续向下，则将当前方块固定在底部
+      this.game.fixed();
+      // 检测能否消分
+      this.game.clearSquare((data)=> {
+        if (data > 0) {
+          this.setData({
+            score: this.data.score + this.calScore(data)
+          })
+        }
+      });
+      //检测游戏是否结束
+      if(this.game.checkGameOver()){
+        console.log('结束')
+        this.end()
+      }else {
+        // 执行下一条
+        this.game.runNext();
+      }       
+    }   
+  },
+  //开始
+  run: function(){
+    this.setData({
+      status:'run'
+    });
+    // console.log(status)
+    if(!this.data.timerId){
+      let timerId = setInterval(this.autoMove, 1000)
+      this.setData({
+        timerId: timerId
+      });
+    }        
+  },
+  // 暂停
+  pause: function() {
+    this.setData({
+      status: 'pause'
+    });
+    // console.log(status);
+    clearInterval(this.data.timerId);
+    this.setData({
+      timerId: null
+    })
+  },
+  // 开关按钮
+  play: function (){
+    if(this.data.status==='run') {
+      // 暂停
+      // console.log('暂停')
+      this.pause()
+    }else{
+      // 开始
+      // console.log('开始')
+      this.run()
+    }
+  },
+  // 结束按钮
+  end: function(){
+    this.setData({
+      status: 'end'
+    });
+    clearInterval(this.data.timerId);
+    this.setData({
+      timerId: null
+    })
+    this.game.end();
+  },
+  // 重玩
+  reset: function(){
+    // console.log('重玩');
+    this.game.reset();
+    this.setData({
+      score: 0
+    })
+    this.run();
+  },
   
 
   /**
@@ -147,6 +252,7 @@ Page({
   },
   toFall: function () {
     this.game.fall()
-  } 
+  },
+  
 
 })
