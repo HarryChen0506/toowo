@@ -34,7 +34,7 @@
         <view class="control-button set"><text>暂停</text></view>
       </view>
       <view class="control-down">
-        <view class="control-button fall"><text class="dir-icon fall">fall</text></view>
+        <view class="control-button fall" bindtap="toFall"><text class="dir-icon fall">fall</text></view>
       </view>
     </view>
     <view class="direction">

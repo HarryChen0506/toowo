@@ -55,7 +55,9 @@ Page({
   onLoad: function (options) {
     this.game = new Game({
       showData: this.showData,
-      refreshNext: this.refreshNext
+      refreshNext: this.refreshNext,
+      refreshGame: this.refreshGame,
+      
     });
     this.game.init()
   },
@@ -116,10 +118,14 @@ Page({
     console.log('data', data)
   },
   refreshNext: function(data){
-    console.log('next', data.data);
-    var newData = decorateData(data.data);
-    console.log('new', newData)
+    // console.log('next', data);
+    var newData = decorateData(data);
     this.setData({ nextData: newData })
+  },
+  refreshGame: function (data) {
+    // console.log('game', data);
+    var newData = decorateData(data);
+    this.setData({ gameData: newData })
   },
   // 将数据进行一层对象的包裹
   
@@ -128,16 +134,19 @@ Page({
    * 按钮操作
    */
   toRotate: function(){
-    console.log(123, this.game)
+    this.game.rotate();
   },
   toLeft: function(){
-    console.log('left', this.data);   
+    this.game.left();
   },
   toRight: function () {
-
+    this.game.right()
   },
-  toDown: function () {
-
+  toDown: function () {    
+    this.game.down()
+  },
+  toFall: function () {
+    this.game.fall()
   } 
 
 })
