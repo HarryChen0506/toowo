@@ -39,7 +39,7 @@ page{
 }
 .box.box-next {
     border: 1px solid #fdfdfd;
-    background: pink;
+    background: pink;    
 }
 .box.box-dead {
     border: 1px solid #ddd;
