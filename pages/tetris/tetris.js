@@ -1,5 +1,6 @@
 // pages/tetris/tetris.js
-const { Game } = require('../../lib/tetris/game.js')
+const { Game } = require('../../lib/tetris/game.js');
+const { Audio } = require('../../lib/audio/audio.js');
 let gameData = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -56,6 +57,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.voice = new Audio();
     this.game = new Game({
       showData: this.showData,
       refreshNext: this.refreshNext,
@@ -239,6 +241,7 @@ Page({
    * 按钮操作
    */
   toRotate: function(){
+    this.voice.play();
     this.game.rotate();
   },
   toLeft: function(){
