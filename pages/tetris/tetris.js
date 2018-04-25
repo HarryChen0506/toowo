@@ -164,6 +164,7 @@ Page({
       // 检测能否消分
       this.game.clearSquare((data)=> {
         if (data > 0) {
+          this.longShock();  
           this.setData({
             score: this.data.score + this.calScore(data)
           })
@@ -235,27 +236,47 @@ Page({
     })
     this.run();
   },
-  
-
+  /** 
+   * 震动
+   */
+  shortShock: function(){
+    wx.vibrateShort({
+      success: function (res) {
+        // console.log('res', res)
+      }
+    })
+  },
+  longShock: function () {
+    wx.vibrateLong({
+      success: function (res) {
+        // console.log('res', res)
+      }
+    })
+  },
   /**
    * 按钮操作
    */
   toRotate: function(){
-    this.voice.play();
+    this.shortShock();    
     this.game.rotate();
   },
   toLeft: function(){
+    this.shortShock(); 
     this.game.left();
   },
   toRight: function () {
+    this.shortShock(); 
     this.game.right()
   },
-  toDown: function () {    
+  toDown: function () { 
+    this.shortShock();    
     this.game.down()
   },
   toFall: function () {
+    this.shortShock(); 
     this.game.fall()
   },
+
   
 
 })
