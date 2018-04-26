@@ -16,7 +16,7 @@ page{
 }
 .main-left {
   position: absolute;
-  left: 50rpx;
+  left: 40rpx;
   top: 130rpx;
 }
 .main-right {
@@ -35,7 +35,7 @@ page{
   color: rgb(253,199,57)
 }
 .score .num{
-  margin-left: 30rpx;
+  margin-left: 20rpx;
 }
 
 .main .game {
