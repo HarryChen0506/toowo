@@ -11,19 +11,38 @@ page{
   position: relative;
   padding: 20rpx 40rpx;
 }
-.main-left {
+.main-middle {
  display: flex;
+}
+.main-left {
+  position: absolute;
+  left: 50rpx;
+  top: 130rpx;
 }
 .main-right {
   position: absolute;
   right: 50rpx;
-  top: 50rpx;
+  top: 180rpx;
 }
+.score {
+  font-size: 50rpx;
+  margin-bottom: 50rpx;
+}
+.score.score-history {
+  color: rgb(92,190,229)
+}
+.score.score-now {
+  color: rgb(253,199,57)
+}
+.score .num{
+  margin-left: 30rpx;
+}
+
 .main .game {
     margin: 0 auto;
     /* width: 290rpx;  */
     /* min-height: 600rpx;  */
-    border: 1rpx solid #000;
+    border: 1rpx solid #efefef;
 }
 .box-row {  
    font-size: 0rpx; 
@@ -36,19 +55,21 @@ page{
   box-sizing: border-box;
   width: 30rpx;
   height: 30rpx;
+  background: rgb(235,235,235);
+  border: 1px solid #fff;
+  border-radius: 6rpx;
 }
-.box.box-next {
-    border: 1px solid #fdfdfd;
-    background: pink;    
+.box.box-next {    
+    background: rgb(153,218,87);    
 }
 .box.box-dead {
     border: 1px solid #ddd;
-    background: #ccc;
+    background: rgb(228,108,130);
 }
 .main .next {
   width: 120rpx;
   height: 120rpx;
-  border: 1rpx solid red;
+  /* border: 1rpx solid red; */
 }
 .main .score {
   margin-top: 20rpx
@@ -67,39 +88,44 @@ page{
   height: 300rpx;
   /* background: blue; */
 }
-.dir-button {  
-  position: absolute;
+
+.dir-container {
+   position: absolute;
+}
+.dir-container.up{
+  top: 0rpx;
+  left: 100rpx;
+}
+.dir-container.right{
+  top: 100rpx;
+  left: 200rpx;
+}
+.dir-container.down{
+  top: 200rpx;
+  left: 100rpx;
+}
+.dir-container.left{
+   top: 100rpx;
+   left: 0rpx;
+}
+
+
+
+.dir-button { 
+  position: relative;
   width: 100rpx;
   height: 100rpx;
   border-radius: 100rpx;
   background: red;
+  box-shadow: 0rpx 10rpx 0rpx rgba(219,31,5,1), 0rpx 10rpx 25rpx rgba(0,0,0,.7); 
   text-align: center;
   transition: all linear 0.05s;
 }
 .dir-button.active {
-  width: 120rpx;
-  height: 120rpx;  
+  top: 10rpx;
+  box-shadow: 0rpx 0rpx 0rpx rgba(219,31,5,1), 0rpx 0rpx 25rpx rgba(0,0,0,.7);
 }
-.dir-button.up {
-  top: 0rpx;
-  left: 100rpx;
-   transform: rotate(-90deg);
-}
-.dir-button.right {
-   top: 100rpx;
-   left: 200rpx;
-   transform: rotate(0deg);
-}
-.dir-button.down {
-  top: 200rpx;
-  left: 100rpx;
-   transform: rotate(90deg);
-}
-.dir-button.left {
-   top: 100rpx;
-   left: 0rpx;
-   transform: rotate(180deg);
-}
+
 .dir-icon {  
   line-height: 100rpx;
   font-size: 50rpx;
