@@ -51,6 +51,7 @@ Page({
     status: 'pause',   //默认暂停
     timerId: null,     //定时器Id
     score: 0,          //得分
+    highestScore: 0,   //历史最高分
   },
 
   /**
@@ -66,6 +67,7 @@ Page({
     });
     this.game.init();
     this.play();
+    this.getHighestScore();
   },
 
   /**
@@ -157,6 +159,28 @@ Page({
     }
     return getScore
   },
+  // 获取历史最高分
+  getHighestScore: function(){
+    let highestScore;
+    wx.getStorage({
+      key: 'highestScore',
+      complete:  (res)=> {
+        highestScore = res.data||0;
+        this.setData({
+          highestScore: highestScore
+        })
+      }
+    })
+  },
+  //保存历史最高分
+  saveHighestScore: function(oldScore, newScore){
+    if (newScore > oldScore){
+      wx.setStorage({
+        key: "highestScore",
+        data: newScore
+      })
+    }   
+  },
   autoMove: function () {
     if (!this.game.down()) {
       // 如果不能继续向下，则将当前方块固定在底部
@@ -168,6 +192,8 @@ Page({
           this.setData({
             score: this.data.score + this.calScore(data)
           })
+          // 保存历史记录
+          this.saveHighestScore(this.data.highestScore, this.data.score)
         }
       });
       //检测游戏是否结束
@@ -234,6 +260,7 @@ Page({
     this.setData({
       score: 0
     })
+    this.getHighestScore();
     this.run();
   },
   /** 

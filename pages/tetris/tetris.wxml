@@ -4,10 +4,8 @@
     <view class="main-left">
       <view class="game">
         <view wx:for="{{gameData}}"  wx:for-item="row" wx:key="idx_row" wx:for-index="idx_row" class="box-row">
-          <view wx:for="{{row}}" wx:for-item="dot" wx:for-index="idx_col" wx:key="id" class="box-col"> 
-            <view wx:if="{{dot.value===2}}" class=".box .box-next"></view>                   
-            <view wx:if="{{dot.value===1}}" class=".box .box-dead"></view>                   
-            <view wx:if="{{dot.value===0}}" class=".box "></view>                   
+          <view wx:for="{{row}}" wx:for-item="dot" wx:for-index="idx_col" wx:key="id" class="box-col">           
+            <view class="{{dot.value===0?'box':(dot.value===2?'box box-next':'box box-dead')}}"></view>
           </view>
         </view>
       </view>
@@ -15,12 +13,14 @@
     <view class="main-right">
       <view class="next">
         <view wx:for="{{nextData}}"  wx:for-item="row" wx:key="idx_row" wx:for-index="idx_row" class="box-row">
-          <view wx:for="{{row}}" wx:for-item="dot" wx:for-index="idx_col" wx:key="{{id}}" class="box-col"> 
-            <view wx:if="{{dot.value===2}}" class=".box .box-next"></view>                   
-            <view wx:if="{{dot.value===1}}" class=".box .box-dead"></view>                   
-            <view wx:if="{{dot.value===0}}" class=".box "></view>                   
+          <view wx:for="{{row}}" wx:for-item="dot" wx:for-index="idx_col" wx:key="{{id}}" class="box-col">           
+            <view class="{{dot.value===0?'box':(dot.value===2?'box box-next':'box box-dead')}}"></view>
           </view>
         </view>
+      </view>
+      <view class="score">
+        <text>历史记录</text>
+        <view>{{highestScore}}</view>
       </view>
       <view class="score">
         <text>得分</text>
