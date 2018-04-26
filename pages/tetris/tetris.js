@@ -52,6 +52,13 @@ Page({
     timerId: null,     //定时器Id
     score: 0,          //得分
     highestScore: 0,   //历史最高分
+    buttonActive: {
+      left: false,
+      right: false,
+      rotate: false,
+      down: false,
+      fall: false
+    }
   },
 
   /**
@@ -81,7 +88,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.run()
+    
   },
 
   /**
@@ -303,7 +310,40 @@ Page({
     this.shortShock(); 
     this.game.fall()
   },
-
+  /**
+   * 改变按钮样式
+   */
+  changeButtonStyle: function(e){
+    const { button } = e.currentTarget.dataset;
+    this.setData({
+      buttonActive: this.calButtonStyle(button, this.data.buttonActive)
+    })
+    // console.log(this.data.buttonActive)
+  },
+  // 计算按钮是否active
+  calButtonStyle: function(type, data){
+    let buttonActive = Object.assign({}, data);  
+    switch(type){
+      case 'BUTTON_LEFT':
+        buttonActive.left = !buttonActive.left;
+        break;
+      case 'BUTTON_RIGHT':
+        buttonActive.right = !buttonActive.right;
+        break;
+      case 'BUTTON_ROTATE':
+        buttonActive.rotate = !buttonActive.rotate;
+        break;
+      case 'BUTTON_DOWN':
+        buttonActive.down = !buttonActive.down;
+        break;
+      case 'BUTTON_FALL':
+        buttonActive.fall = !buttonActive.fall;
+        break;
+      default:
+        break;
+    }
+    return buttonActive
+  }
   
 
 })

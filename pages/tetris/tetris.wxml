@@ -31,7 +31,7 @@
   <view class="operate">
     <view class="control">
       <view class="control-up">
-        <view class="control-button set pause" bindtap="play"><text>暂停</text></view>
+        <view class="control-button set pause" bindtap="play"><text>{{status==='run'?'暂停':'开始'}}</text></view>
         <view class="control-button set reset" bindtap="reset"><text>重玩</text></view>
       </view>
       <view class="control-down">
@@ -39,10 +39,22 @@
       </view>
     </view>
     <view class="direction">
-      <view class="dir-button up" bindtap="toRotate"><text class="dir-icon up">></text></view>
-      <view class="dir-button right" bindtap="toRight"><text class="dir-icon right">></text></view>
-      <view class="dir-button down" bindtap="toDown"><text class="dir-icon down">></text></view>
-      <view class="dir-button left" bindtap="toLeft"><text class="dir-icon left">></text></view>
+      <view class="{{buttonActive.rotate?'dir-button active up':'dir-button up'}}"
+        data-button="BUTTON_ROTATE" bindtouchstart="changeButtonStyle" bindtouchend="changeButtonStyle" bindtap="toRotate">
+        <text class="dir-icon up">></text>
+      </view>
+      <view class="{{buttonActive.right?'dir-button active right':'dir-button right'}}" 
+        bindtouchstart="changeButtonStyle" bindtouchend="changeButtonStyle" data-button="BUTTON_RIGHT" bindtap="toRight">
+        <text class="dir-icon right">></text>
+      </view>
+      <view class="{{buttonActive.down?'dir-button active down':'dir-button down'}}" 
+        bindtouchstart="changeButtonStyle" bindtouchend="changeButtonStyle" data-button="BUTTON_DOWN"  bindtap="toDown">
+        <text class="dir-icon down">></text>
+      </view>
+      <view class="{{buttonActive.left?'dir-button active left':'dir-button left'}}" 
+        bindtouchstart="changeButtonStyle" bindtouchend="changeButtonStyle" data-button="BUTTON_LEFT"  bindtap="toLeft">
+        <text class="dir-icon left">></text>
+      </view>
     </view>
   </view>
 </view> 

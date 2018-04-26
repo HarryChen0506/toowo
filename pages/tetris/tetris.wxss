@@ -74,6 +74,11 @@ page{
   border-radius: 100rpx;
   background: red;
   text-align: center;
+  transition: all linear 0.05s;
+}
+.dir-button.active {
+  width: 120rpx;
+  height: 120rpx;  
 }
 .dir-button.up {
   top: 0rpx;
