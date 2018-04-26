@@ -43,7 +43,10 @@
         </view>
       </view>
       <view class="control-down">
-        <view class="control-button fall" bindtap="toFall"><text class="dir-icon fall">fall</text></view>
+        <view class="{{buttonActive.fall?'control-button active fall':'control-button fall'}}"
+          bindtouchstart="changeButtonStyle" bindtouchend="changeButtonStyle" data-button="BUTTON_FALL" bindtap="toFall">
+          <text class="dir-icon fall"></text>
+        </view>
       </view>
     </view>
     <view class="direction">

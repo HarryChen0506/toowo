@@ -11,4 +11,4 @@
 } 
 
 /** 字体库 **/
-@import './assets/icon.wxss';
+@import '/assets/icon.wxss';
