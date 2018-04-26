@@ -36,6 +36,7 @@ page{
 }
 .score .num{
   margin-left: 20rpx;
+  font-size: 34rpx;
 }
 
 .main .game {
