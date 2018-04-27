@@ -16,7 +16,7 @@ page{
 }
 .main-left {
   position: absolute;
-  left: 40rpx;
+  left: 50rpx;
   top: 130rpx;
 }
 .main-right {
@@ -24,6 +24,18 @@ page{
   right: 50rpx;
   top: 180rpx;
 }
+
+.control-left {
+  position: absolute;
+  left: 80rpx;
+  bottom: 20rpx;
+}
+.control-right {
+  position: absolute;
+  right: 80rpx;
+  bottom: 20rpx;
+}
+
 .score {
   font-size: 50rpx;
   margin-bottom: 50rpx;
@@ -77,7 +89,7 @@ page{
 }
 .operate {
   margin-top: 100rpx;
-  padding: 20rpx 40rpx;
+  padding: 20rpx 70rpx;
   display: flex;
 }
 .operate .control {
@@ -132,15 +144,12 @@ page{
   font-size: 50rpx;
   color: #fff;
 }
-.control-up {
-  margin-top: 20rpx;
-  margin-left:10rpx;
-}
 .control-down {
-  margin-bottom: 60rpx;
+  margin-top: 120rpx;
+  margin-left: 20rpx;
 }
 .control-button {
-  width: 300rpx;
+  width: 250rpx;
   height: 100rpx;
   text-align: center; 
 }
@@ -160,15 +169,12 @@ page{
 }
 .control-button.set {
   display: inline-block;
-  width: 100rpx;
-  height: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
   background: rgb(237,149,75);
-  box-shadow: 5rpx 5rpx 0rpx rgba(218,137,69,1), 5rpx 5rpx 15rpx rgba(0,0,0,.7);
+  box-shadow: 3rpx 3rpx 0rpx rgba(218,137,69,1), 3rpx 3rpx 10rpx rgba(0,0,0,.7);
   border-radius: 100rpx;
   color: #fff;
-  font-size: 40rpx; 
-  line-height: 100rpx;
-}
-.control-button.set.reset {
-  margin-right: 50rpx;
+  font-size: 30rpx; 
+  line-height: 80rpx;
 }
