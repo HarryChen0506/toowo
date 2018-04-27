@@ -170,5 +170,5 @@ page{
   line-height: 100rpx;
 }
 .control-button.set.reset {
-  margin-left: 50rpx;
+  margin-right: 50rpx;
 }

@@ -33,14 +33,14 @@
   <view class="operate">
     <view class="control">
       <view class="control-up">
+        <view class="control-button set reset" bindtap="reset">
+          <text class="icon-ccw"></text>
+        </view>
         <view class="control-button set pause" bindtap="play">
           <!-- <text>{{status==='run'?'暂停':'开始'}}</text> -->
           <text wx:if="{{status==='run'}}" class="icon-controller-paus"></text>
           <text wx:if="{{status==='pause'||status==='end'}}" class="icon-controller-play"></text>
-        </view>
-        <view class="control-button set reset" bindtap="reset">
-          <text class="icon-ccw"></text>
-        </view>
+        </view>       
       </view>
       <view class="control-down">
         <view class="{{buttonActive.fall?'control-button active fall':'control-button fall'}}"
