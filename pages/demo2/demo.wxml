@@ -3,7 +3,7 @@
   <block>
     <text>这是个测试页面</text>
   </block>
-  <view style="height: 280px;background: red;">
+  <!-- <view style="height: 280px;background: red;" bindtouchstart="onTouchstart" bindtouchmove="onTouchmove">
     <block>
       <text>地图案例</text>
     </block>
@@ -48,22 +48,45 @@
         </swiper-item>
       </block>
     </swiper>
-  </view>
-  <view>
+  </view> -->
+  <!-- <view>
     <block>
       <text>movable-view</text>
     </block> 
     <movable-area 
-      style="height: 200px; width: 200px; background: red;"
+      style="height: 200px; width: 100%; background: red;"
     >
       <movable-view 
         style="height: 50px; width: 50px; background: blue;" 
         x="{{x}}" 
         y="{{y}}" 
         direction="all"
+        scale="{{true}}"
+        bindchange="onChange"     
+        bindscale="onScale"   
       >
       </movable-view>
     </movable-area>
+  </view> -->
+
+  <view>
+    <block>
+      <text>手势库测试</text>
+    </block> 
+    <view class="move-wrap">
+      <view
+        class="move-box"
+        style="{{boxStyleStr}}"
+        bindtouchstart="touchStart"
+        bindtouchmove="touchMove"
+        bindtouchend="touchEnd"
+        bindtouchcancel="touchCancel"
+      >
+
+      </view>
+
+    </view>
+
   </view>
 
   

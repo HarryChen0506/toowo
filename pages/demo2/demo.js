@@ -1,4 +1,6 @@
 // pages/demo/demo.js
+import WxTouchEvent from '../../lib/wx-touch-event.js';
+let demoTouchEvent = new WxTouchEvent();
 Page({
 
   /**
@@ -20,7 +22,26 @@ Page({
     interval: 5000,
     duration: 1000,
     x: 10,
-    y: 10
+    y: 10,
+    boxStyleStr: '',
+    boxStyle: {
+      translate: {
+        x:0,
+        y:0,
+        z:0
+      },
+      rotate: {
+        x: 0,
+        y: 0,
+        z: 0,
+        angle: 0
+      },
+      scale: {
+        x: 1,
+        y: 1,
+        z: 0
+      }
+    }
   },
 
   /**
@@ -47,55 +68,133 @@ Page({
         })
       }
     })
+
+    this.demoTouchEvent = demoTouchEvent;
+    this.demoTouchEvent.bind({//初始化后绑定事件
+        swipe: function(e) {
+            // console.log(e);           
+        }.bind(this),
+        doubleTap: function(e) {
+            // console.log(e);
+        },
+        tap: function(e) {
+            // console.log(e);
+        }.bind(this),
+        longTap: function(e) {
+            // console.log(e);
+        },
+        rotate: function(e) {
+            // console.log(e)
+            this.changeRotate(e)
+        }.bind(this),
+        pinch: function(e) {
+            // console.log(e);
+            this.changeScale(e)
+        }.bind(this),
+        pressMove: function(e) {
+          // console.log('pressMove', e);
+          this.changeTranslate(e)
+        }.bind(this),
+    })
     
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  // 手势
+  touchStart: demoTouchEvent.start.bind(demoTouchEvent),
+  touchMove: demoTouchEvent.move.bind(demoTouchEvent),
+  touchEnd: demoTouchEvent.end.bind(demoTouchEvent),
+  touchCancel: demoTouchEvent.cancel.bind(demoTouchEvent),
+  // 改变位置
+  changeTranslate: function (e) {
+    if(e.type==='touchmove'){
+      console.log('移动', e.type, e);
+      const {boxStyle} = this.data;
+      const {translate, rotate, scale} = boxStyle;
+      this.setData({
+        boxStyle: {
+          translate: {
+            x: translate.x + e.deltaX,
+            y: translate.y + e.deltaY,
+            z: translate.z
+          },
+          rotate: {
+            x: rotate.x,
+            y: rotate.y,
+            z: rotate.z,
+            angle: rotate.angle
+          },
+          scale: {
+            x: scale.x,
+            y: scale.y,
+            z: 0
+          }
+        }
+      })
+      // this.updateStyle()
+      this.requestElementUpdate()
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  // 改变大小
+  changeScale: function (e) {    
+    if(e.type==='pinch'){
+      console.log('缩放', e.type, e)    
+      const {boxStyle} = this.data;
+      const {translate, rotate, scale} = boxStyle;
+      this.setData({
+        boxStyle: {
+          translate: {
+            x: translate.x,
+            y: translate.y,
+            z: translate.z
+          },
+          rotate: {
+            x: rotate.x,
+            y: rotate.y,
+            z: rotate.z,
+            angle: rotate.angle
+          },
+          scale: {
+            x: e.scale,
+            y: e.scale,
+            z: 0
+          }
+        }
+      })
+      this.requestElementUpdate()
+    }
+    // console.log('data', this.data.boxStyle)
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  // 改变旋转
+  changeRotate: function (e) {
+    if(e.type==='rotate'){
+      console.log('旋转', e.type, e)
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  updateStyle: function () {
+    let transform = this.data.boxStyle;
+    var value = [
+        'translate3d(' + transform.translate.x + 'px, ' + transform.translate.y + 'px, 0)',
+        'scale(' + transform.scale.x + ', ' + transform.scale.y + ')',
+        'rotate('+ transform.rotate.angle + 'deg)'
+    ];
+    let boxStyleStr = 'transform:' + value.join(' ')
+    this.setData({
+      boxStyleStr: boxStyleStr
+    })
+    this.ticking = false
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  reqAnimationFrame: function (callback) {
+    if(this.timerId){
+      clearInterval(this.timerId)
+    }
+    this.timerId = setTimeout(callback, 1000 / 30)
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  requestElementUpdate: function () {
+    if(!this.ticking) {
+      this.reqAnimationFrame(this.updateStyle);
+      this.ticking = true;
+    }
   }
+
+
+
 })
